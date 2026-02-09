@@ -31,16 +31,9 @@
       max-width: 400px;
       background: rgba(255,255,255,0.2);
       border-radius: 12px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 1s;
     }
 
-    .show {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
+    /* IMAGE GALLERY */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -56,11 +49,9 @@
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 0.8s;
     }
 
+    /* VIDEOS */
     .videos {
       display: flex;
       flex-wrap: wrap;
@@ -69,10 +60,10 @@
       margin-top: 40px;
     }
 
-    /* FIXED VIDEO STYLE (always visible) */
     video {
       width: 180px;
       border-radius: 12px;
+      background: black;
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
@@ -87,6 +78,7 @@
       opacity: 0.8;
     }
 
+    /* HEART CONFETTI */
     .heart {
       position: fixed;
       top: -20px;
@@ -101,6 +93,7 @@
       }
     }
 
+    /* MOBILE */
     @media (max-width: 768px) {
       body { padding: 20px; }
       h1 { font-size: 28px; }
@@ -112,7 +105,6 @@
       }
 
       video { width: 130px; }
-      .timeline { max-width: 90%; }
     }
   </style>
 </head>
@@ -132,6 +124,7 @@
 
   <p id="daysCounter"></p>
 
+  <!-- IMAGES -->
   <div class="gallery">
     <img src="img1.jpg">
     <img src="img2.jpg">
@@ -148,40 +141,44 @@
     <img src="img13.jpg">
   </div>
 
+  <!-- VIDEOS -->
   <div class="videos">
-    <video autoplay muted loop src="video1.mp4"></video>
-    <video autoplay muted loop src="video2.mp4"></video>
-    <video autoplay muted loop src="video3.mp4"></video>
-    <video autoplay muted loop src="video4.mp4"></video>
-    <video autoplay muted loop src="video5.mp4"></video>
-    <video autoplay muted loop src="video6.mp4"></video>
-    <video autoplay muted loop src="video7.mp4"></video>
-    <video autoplay muted loop src="video8.mp4"></video>
-    <video autoplay muted loop src="video9.mp4"></video>
-    <video autoplay muted loop src="video10.mp4"></video>
-    <video autoplay muted loop src="video11.mp4"></video>
-    <video autoplay muted loop src="video12.mp4"></video>
-    <video autoplay muted loop src="video13.mp4"></video>
-    <video autoplay muted loop src="video14.mp4"></video>
-    <video autoplay muted loop src="video15.mp4"></video>
-    <video autoplay muted loop src="video16.mp4"></video>
+    <video controls muted loop src="video1.mp4"></video>
+    <video controls muted loop src="video2.mp4"></video>
+    <video controls muted loop src="video3.mp4"></video>
+    <video controls muted loop src="video4.mp4"></video>
+    <video controls muted loop src="video5.mp4"></video>
+    <video controls muted loop src="video6.mp4"></video>
+    <video controls muted loop src="video7.mp4"></video>
+    <video controls muted loop src="video8.mp4"></video>
+    <video controls muted loop src="video9.mp4"></video>
+    <video controls muted loop src="video10.mp4"></video>
+    <video controls muted loop src="video11.mp4"></video>
+    <video controls muted loop src="video12.mp4"></video>
+    <video controls muted loop src="video13.mp4"></video>
+    <video controls muted loop src="video14.mp4"></video>
+    <video controls muted loop src="video15.mp4"></video>
+    <video controls muted loop src="video16.mp4"></video>
   </div>
 
   <footer>
     Made with love by your Gunda ❤️
   </footer>
 
+  <!-- MUSIC -->
   <audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    // DAYS COUNTER
     const startDate = new Date("2024-06-29");
     const today = new Date();
     const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
     document.getElementById("daysCounter").innerText =
       "It has been " + diffDays + " beautiful days with you ❤️";
 
+    // MUSIC AUTOPLAY
     window.addEventListener("load", () => {
       const music = document.getElementById("bgMusic");
       music.play().catch(() => {
@@ -189,6 +186,7 @@
       });
     });
 
+    // CONTINUOUS HEART RAIN
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -200,20 +198,6 @@
     }
 
     setInterval(createHeart, 300);
-
-    const elements = document.querySelectorAll(".timeline, .gallery img");
-
-    function revealOnScroll() {
-      elements.forEach((el, index) => {
-        const pos = el.getBoundingClientRect().top;
-        if (pos < window.innerHeight - 60) {
-          setTimeout(() => el.classList.add("show"), index * 120);
-        }
-      });
-    }
-
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
   </script>
 
 </body>
